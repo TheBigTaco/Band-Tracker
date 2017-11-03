@@ -12,6 +12,7 @@ namespace BandTracker.Models.Tests
     private Band blue = new Band("Blue Man Group");
     private Band heathen = new Band("Twenty One Pilots");
     private Venue place = new Venue("place");
+    private Venue there = new Venue("there");
     public void Dispose()
     {
       Band.ClearAll();
@@ -55,6 +56,18 @@ namespace BandTracker.Models.Tests
       Band.AddBandToVenue(heathen.Id, place.Id);
       List<Band> result = Venue.GetBands(place.Id);
       List<Band> testList = new List<Band>{blue, heathen};
+      CollectionAssert.AreEqual(testList, result);
+    }
+    [TestMethod]
+    public void AddBandToVenue_AddsVenueToBands_VenueAddedToBand()
+    {
+      blue.Save();
+      there.Save();
+      place.Save();
+      Band.AddBandToVenue(blue.Id, there.Id);
+      Band.AddBandToVenue(blue.Id, place.Id);
+      List<Venue> result = Band.GetVenues(blue.Id);
+      List<Venue> testList = new List<Venue>{there, place};
       CollectionAssert.AreEqual(testList, result);
     }
   }
