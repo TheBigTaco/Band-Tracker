@@ -103,5 +103,24 @@ namespace BandTracker.Controllers
         Band.AddBandToVenue(bandId, venueId);
         return Redirect("/venue/"+ venueId);
       }
+      [HttpGet("/venue/{id}/delete")]
+      public ActionResult DeleteThisVenue(int id)
+      {
+        Venue.DeleteVenue(id);
+        return Redirect("/venue");
+      }
+      [HttpGet("/venue/{id}/update")]
+      public ActionResult UpdateThisVenue(int id)
+      {
+        return View(id);
+      }
+      [HttpPost("/venue/{id}/updated")]
+      public ActionResult VenueUpdated(int id)
+      {
+        Venue selectedVenue = Venue.Find(id);
+        selectedVenue.UpdateVenue(Request.Form["new-name"]);
+
+        return Redirect("/venue/"+id);
+      }
     }
 }

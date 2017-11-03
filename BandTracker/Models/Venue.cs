@@ -128,7 +128,7 @@ namespace BandTracker.Models
       return output;
     }
 
-    public void UpdateVenue(string name, int id)
+    public void UpdateVenue(string name)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -137,7 +137,7 @@ namespace BandTracker.Models
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
-      searchId.Value = id;
+      searchId.Value = this.Id;
       cmd.Parameters.Add(searchId);
 
       MySqlParameter newName = new MySqlParameter();
