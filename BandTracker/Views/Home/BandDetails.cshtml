@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Venues @Model["band"].Name is playing at</h1>
+@if(Model["venue"].Count == 0)
+{
+  <p>This band is not playing at any venues yet</p>
+}
+@foreach(var venue in Model["venue"])
+{
+  <p><a href="/venue/@venue.Id">@venue.Name</a></p>
+}
+ <p><a href="/band/add/venue">Add a venue</a></p>
+ <p><a href="/venue">View all venues</a></p>

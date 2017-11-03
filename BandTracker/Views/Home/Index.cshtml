@@ -10,7 +10,7 @@
 }
 @foreach(var band in Model)
 {
-  <p>@band.Name</p>
+  <p><a href="/band/@band.Id">@band.Name</a></p>
 }
 
 <p><a href="/band/add">Add a band</a></p>

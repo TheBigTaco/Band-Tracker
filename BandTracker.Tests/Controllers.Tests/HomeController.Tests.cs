@@ -6,16 +6,16 @@ using BandTracker.Models;
 
 namespace BandTracker.Tests
 {
-    [TestClass]
-    public class HomeControllerTests
+  [TestClass]
+  public class HomeControllerTests
+  {
+    [TestMethod]
+    public void Index_ReturnsCorrectView_True()
     {
-      [TestMethod]
-        public void Index_ReturnsCorrectView_True()
-        {
-          HomeController controller = new HomeController();
-          IActionResult indexView = controller.Index();
-          ViewResult result = indexView as ViewResult;
-          Assert.IsInstanceOfType(result, typeof(ViewResult));
-        }
+      HomeController controller = new HomeController();
+      IActionResult indexView = controller.Index();
+      ViewResult result = indexView as ViewResult;
+      Assert.IsInstanceOfType(result, typeof(ViewResult));
     }
+  }
 }
