@@ -101,5 +101,31 @@ namespace BandTracker.Models
       }
       return output;
     }
+
+    public static List<Band> GetBands(int venueId)
+    {
+      List<Band> output = new List<Band>{};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT bands.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) WHERE venue_id = @venueId;";
+      cmd.Parameters.Add(new MySqlParameter("@venueId", venueId));
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        string bandName = rdr.GetString(1);
+        int bandId = rdr.GetInt32(0);
+        Band newBand = new Band(bandName, bandId);
+        output.Add(newBand);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return output;
+    }
   }
 }
