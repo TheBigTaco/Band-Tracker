@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rename.Models;
+using BandTracker.Models;
 
-namespace Rename.Models.Tests
+namespace BandTracker.Models.Tests
 {
   [TestClass]
-  public class _classTests : IDisposable
+  public class BandTests : IDisposable
   {
     public void Dispose()
     {
-      _class.ClearAll();
+      Band.ClearAll();
     }
     public CourseTests()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=_database_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
     }
     [TestMethod]
     public void Method_Description_ExpectedValue()

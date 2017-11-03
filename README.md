@@ -1,4 +1,4 @@
-# Rename
+# BandTracker
 ##### by Adam Titus
 
 ### Description

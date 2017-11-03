@@ -1,10 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Rename.Controllers;
-using Rename.Models;
+using BandTracker.Controllers;
+using BandTracker.Models;
 
-namespace Rename.Tests
+namespace BandTracker.Tests
 {
     [TestClass]
     public class HomeControllerTests
