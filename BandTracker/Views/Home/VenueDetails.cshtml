@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-<h1>Bands playing at @Model["venue"].Name</h1>
+<span class="card-title"><h1>Bands playing at @Model["venue"].Name</h1></span>
 @if(Model["band"].Count == 0)
 {
   <p>There are no bands playing at this venue yet</p>
@@ -11,7 +11,9 @@
 {
   <p><a href="/band/@band.Id">@band.Name</a></p>
 }
- <p><a href='/venue/@Model["venue"].Id/band'>Add a band to this venue</a></p>
- <p><a href="/">View all bands</a></p>
- <p><a href='/venue/@Model["venue"].Id/delete'>Delete this venue</a></p>
- <p><a href='/venue/@Model["venue"].Id/update'>Update this venues name</a></p>
+<div class="card-action">
+  <p><a href='/venue/@Model["venue"].Id/band'>Add a band to this venue</a></p>
+  <p><a href="/">View all bands</a></p>
+  <p><a href='/venue/@Model["venue"].Id/delete'>Delete this venue</a></p>
+  <p><a href='/venue/@Model["venue"].Id/update'>Update this venues name</a></p>
+</div>

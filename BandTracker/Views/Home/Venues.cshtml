@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-<h1>Venues</h1>
+<span class="card-title"><h1>Venues</h1></span>
 
 @if(Model.Count == 0)
 {
@@ -12,6 +12,7 @@
 {
   <p><a href="/venue/@venue.Id">@venue.Name</a></p>
 }
-
-<p><a href="/venue/add">Add a venue</a></p>
-<p><a href="/">View all bands</a></p>
+<div class="card-action">
+  <p><a href="/venue/add">Add a venue</a></p>
+  <p><a href="/">View all bands</a></p>
+</div>
