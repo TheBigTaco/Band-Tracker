@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+<form action="/venue/new/band" method="post">
+  <select name="bands">
+    @foreach(var band in Model["band"])
+    {
+      <option value="@band.Id">@band.Name</option>
+    }
+  </select>
+  <input type="hidden" name="venue-id" id="venue-id" value='@Model["venue"].Id'>
+  <button type="submit" name="button">submit</button>
+</form>

@@ -45,5 +45,63 @@ namespace BandTracker.Controllers
 
         return Redirect("/venue");
       }
+      [HttpGet("/band/{id}")]
+      public ActionResult BandDetails(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Band currentBand = Band.Find(id);
+        List<Venue> bandVenues = currentBand.GetVenues();
+        model.Add("band", currentBand);
+        model.Add("venue", bandVenues);
+
+        return View(model);
+      }
+      [HttpGet("/venue/{id}")]
+      public ActionResult VenueDetails(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Venue currentVenue = Venue.Find(id);
+        List<Band> venueBands = currentVenue.GetBands();
+        model.Add("band", venueBands);
+        model.Add("venue", currentVenue);
+
+        return View(model);
+      }
+      [HttpGet("/band/{id}/venue")]
+      public ActionResult ConnectBandToVenue(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Band currentBand = Band.Find(id);
+        List<Venue> venues = Venue.GetAll();
+        model.Add("band", currentBand);
+        model.Add("venue", venues);
+        return View(model);
+      }
+      [HttpPost("/band/new/venue")]
+      public ActionResult NewBandToVenueCon()
+      {
+        int bandId = int.Parse(Request.Form["band-id"]);
+        int venueId = int.Parse(Request.Form["venues"]);
+        Band.AddBandToVenue(bandId, venueId);
+        return Redirect("/band/"+ bandId);
+      }
+      [HttpGet("/venue/{id}/band")]
+      public ActionResult ConnectVenueToBand(int id)
+      {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Venue currentVenue = Venue.Find(id);
+        List<Band> bands = Band.GetAll();
+        model.Add("band", bands);
+        model.Add("venue", currentVenue);
+        return View(model);
+      }
+      [HttpPost("/venue/new/band")]
+      public ActionResult NewVenueToBandCon()
+      {
+        int bandId = int.Parse(Request.Form["bands"]);
+        int venueId = int.Parse(Request.Form["venue-id"]);
+        Band.AddBandToVenue(bandId, venueId);
+        return Redirect("/venue/"+ venueId);
+      }
     }
 }

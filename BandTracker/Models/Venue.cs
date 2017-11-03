@@ -102,7 +102,7 @@ namespace BandTracker.Models
       return output;
     }
 
-    public static List<Band> GetBands(int venueId)
+    public List<Band> GetBands()
     {
       List<Band> output = new List<Band>{};
       MySqlConnection conn = DB.Connection();
@@ -110,7 +110,7 @@ namespace BandTracker.Models
 
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"SELECT bands.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) WHERE venue_id = @venueId;";
-      cmd.Parameters.Add(new MySqlParameter("@venueId", venueId));
+      cmd.Parameters.Add(new MySqlParameter("@venueId", this.Id));
 
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
