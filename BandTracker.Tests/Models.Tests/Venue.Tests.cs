@@ -44,5 +44,23 @@ namespace BandTracker.Models.Tests
 
       Assert.AreEqual(heathen, result);
     }
+    [TestMethod]
+    public void DeleteVenue_DeleteVenue_VenueDeleted()
+    {
+      blue.Save();
+      Venue.DeleteVenue(blue.Id);
+      int result = Venue.GetAll().Count;
+
+      Assert.AreEqual(0, result);
+    }
+    [TestMethod]
+    public void UpdateVenue_UpdateVenue_VenueUpdated()
+    {
+      blue.Save();
+      blue.UpdateVenue("over there", blue.Id);
+      Venue test = new Venue("over there");
+
+      Assert.AreEqual(test, Venue.GetAll()[0]);
+    }
   }
 }
