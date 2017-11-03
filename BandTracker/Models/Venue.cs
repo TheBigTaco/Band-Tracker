@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 
-namespace VenueTracker.Models
+namespace BandTracker.Models
 {
   public class Venue
   {
@@ -25,12 +25,12 @@ namespace VenueTracker.Models
       else
       {
         Venue otherVenue = (Venue)other;
-        return this.Title == otherVenue.Title;
+        return this.Name == otherVenue.Name;
       }
     }
     public override int GetHashCode()
     {
-      return this.Title.GetHashCode();
+      return this.Name.GetHashCode();
     }
 
     public void Save()

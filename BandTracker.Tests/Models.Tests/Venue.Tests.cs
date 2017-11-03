@@ -7,22 +7,22 @@ using BandTracker.Models;
 namespace BandTracker.Models.Tests
 {
   [TestClass]
-  public class BandTests : IDisposable
+  public class VenueTests : IDisposable
   {
-    private Band blue = new Band("Blue Man Group");
-    private Band heathen = new Band("Twenty One Pilots");
+    private Venue blue = new Venue("Madison Square Garden");
+    private Venue heathen = new Venue("Some Dingy Bar");
     public void Dispose()
     {
       Band.ClearAll();
     }
-    public BandTests()
+    public VenueTests()
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
     }
     [TestMethod]
     public void Equals_AreTheSame_True()
     {
-      Band blue2 = new Band("Blue Man Group");
+      Venue blue2 = new Venue("Madison Square Garden");
       Assert.AreEqual(blue, blue2);
     }
     [TestMethod]
@@ -30,7 +30,7 @@ namespace BandTracker.Models.Tests
     {
       blue.Save();
 
-      int result = Band.GetAll().Count;
+      int result = Venue.GetAll().Count;
 
       Assert.AreEqual(1, result);
     }
@@ -40,7 +40,7 @@ namespace BandTracker.Models.Tests
       blue.Save();
       heathen.Save();
 
-      Band result = Band.Find(heathen.Id);
+      Venue result = Venue.Find(heathen.Id);
 
       Assert.AreEqual(heathen, result);
     }

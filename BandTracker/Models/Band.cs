@@ -25,12 +25,12 @@ namespace BandTracker.Models
       else
       {
         Band otherBand = (Band)other;
-        return this.Title == otherBand.Title;
+        return this.Name == otherBand.Name;
       }
     }
     public override int GetHashCode()
     {
-      return this.Title.GetHashCode();
+      return this.Name.GetHashCode();
     }
 
     public void Save()
